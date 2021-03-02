@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 
 [ApiController]
-[Route("books")]
+[Route("Books")]
 public class BookController : ControllerBase
 {
     private readonly IRepository<Book> _bookRepository;
@@ -16,12 +16,19 @@ public class BookController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAll()
+    public async Task<IActionResult> GetAll(string mySearch)
     {
         try
-        {
-            var allBooks = await _bookRepository.GetAll();
-            return Ok(allBooks);
+        {   
+            if(mySearch.Length != 0)
+            {
+                var searchBooks = await _bookRepository.Search(mySearch.ToLower());
+                return Ok(searchBooks);
+            }
+            else
+            {   var allBooks = await _bookRepository.GetAll();
+                return Ok(allBooks);
+            }
 
         }
         catch (Exception)

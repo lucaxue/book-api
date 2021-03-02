@@ -10,8 +10,8 @@ public class BookRepository : BaseRepository, IRepository<Book>
     public async Task<IEnumerable<Book>> GetAll()
     {
         using var connection = CreateConnection();
-        var books = await connection.QueryAsync<Book>("SELECT * FROM Books;");
-        return books;
+        return await connection.QueryAsync<Book>("SELECT * FROM Books;");
+
     }
 
 
@@ -37,6 +37,24 @@ public class BookRepository : BaseRepository, IRepository<Book>
     {
         using var connection = CreateConnection();
         return await connection.QuerySingleAsync<Book>("INSERT INTO Books (Title, Author) VALUES (@Title, @Author) RETURNING *;", book);
+    }
+
+    public async Task<IEnumerable<Book>> Search(string query)
+    {
+        using var connection = CreateConnection();
+        return await connection.QueryAsync<Book>("SELECT * FROM Books WHERE Title ILIKE @Query OR Author ILIKE @Query;", new { Query = $"%{query}%" });
+
+    }
+    public async Task<IEnumerable<Book>> Limit(int limit, int page)
+    {
+        using var connection = CreateConnection();
+        return await connection.QueryAsync<Book>("SELECT * FROM Books LIMIT @Limit OFFSET @Offset;", new { Limit = limit, Offset = page <= 0 ? 0 : (page - 1) * limit });
+
+    }
+    public async Task<IEnumerable<Book>> SearchAndLimit(string query, int limit, int page)
+    {
+        using var connection = CreateConnection();
+        return await connection.QueryAsync<Book>("SELECT * FROM Books WHERE Title ILIKE @Query OR Author ILIKE @Query LIMIT @Limit OFFSET @Offset;", new { Query = $"%{query}%", Limit = limit, Offset = page <= 0 ? 0 : (page - 1) * limit });
     }
 
 }

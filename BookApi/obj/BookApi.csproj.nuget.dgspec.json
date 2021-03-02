@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/luca/SOCprojects/week5/day4/aspApp/w5d4-asp-app-nicefoodroom6/BookApi/BookApi.csproj": {}
+    "/home/luca/SOCprojects/week9/day2/QueryStrings/w9d2-query-strings-room-4-luca-christina/BookApi/BookApi.csproj": {}
   },
   "projects": {
-    "/home/luca/SOCprojects/week5/day4/aspApp/w5d4-asp-app-nicefoodroom6/BookApi/BookApi.csproj": {
+    "/home/luca/SOCprojects/week9/day2/QueryStrings/w9d2-query-strings-room-4-luca-christina/BookApi/BookApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/luca/SOCprojects/week5/day4/aspApp/w5d4-asp-app-nicefoodroom6/BookApi/BookApi.csproj",
+        "projectUniqueName": "/home/luca/SOCprojects/week9/day2/QueryStrings/w9d2-query-strings-room-4-luca-christina/BookApi/BookApi.csproj",
         "projectName": "BookApi",
-        "projectPath": "/home/luca/SOCprojects/week5/day4/aspApp/w5d4-asp-app-nicefoodroom6/BookApi/BookApi.csproj",
+        "projectPath": "/home/luca/SOCprojects/week9/day2/QueryStrings/w9d2-query-strings-room-4-luca-christina/BookApi/BookApi.csproj",
         "packagesPath": "/home/luca/.nuget/packages/",
-        "outputPath": "/home/luca/SOCprojects/week5/day4/aspApp/w5d4-asp-app-nicefoodroom6/BookApi/obj/",
+        "outputPath": "/home/luca/SOCprojects/week9/day2/QueryStrings/w9d2-query-strings-room-4-luca-christina/BookApi/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/luca/.nuget/NuGet/NuGet.Config"

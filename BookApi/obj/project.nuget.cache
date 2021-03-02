@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2pU1FbYC/AaF3qU40OZ35Jv3qt/hrerAbE7jyJaIr/3BNZ5LKQOQSHD0qj9CF3DKojJ9R9QQjB8ROTEyd4QDpg==",
+  "dgSpecHash": "c4ZAc0z0s1hD3gboP38Gu5pKDEKeHoqBVMzjd0K6/akpdAp6pMVoCqBRXcBOmhWBnNvgxEMnLBacivnsymlDiQ==",
   "success": true,
-  "projectFilePath": "/home/luca/SOCprojects/week5/day4/aspApp/w5d4-asp-app-nicefoodroom6/BookApi/BookApi.csproj",
+  "projectFilePath": "/home/luca/SOCprojects/week9/day2/QueryStrings/w9d2-query-strings-room-4-luca-christina/BookApi/BookApi.csproj",
   "expectedPackageFiles": [
     "/home/luca/.nuget/packages/dapper/2.0.78/dapper.2.0.78.nupkg.sha512",
     "/home/luca/.nuget/packages/microsoft.aspnetcore.authentication.jwtbearer/5.0.1/microsoft.aspnetcore.authentication.jwtbearer.5.0.1.nupkg.sha512",

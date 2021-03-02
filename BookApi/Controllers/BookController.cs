@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 
 [ApiController]
-[Route("books")]
+[Route("Books")]
 public class BookController : ControllerBase
 {
     private readonly IRepository<Book> _bookRepository;
@@ -16,13 +16,27 @@ public class BookController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAll()
+    public async Task<IActionResult> GetAll(string search, int limit = -1, int page = 0)
     {
         try
         {
+            if (search != null && limit >= 0)
+            {
+                var searchedAndLimitedBooks = await _bookRepository.SearchAndLimit(search, limit, page);
+                return Ok(searchedAndLimitedBooks);
+            }
+            else if (search != null)
+            {
+                var searchedBooks = await _bookRepository.Search(search);
+                return Ok(searchedBooks);
+            }
+            else if (limit >= 0)
+            {
+                var limitedBooks = await _bookRepository.Limit(limit, page);
+                return Ok(limitedBooks);
+            }
             var allBooks = await _bookRepository.GetAll();
             return Ok(allBooks);
-
         }
         catch (Exception)
         {
@@ -50,13 +64,11 @@ public class BookController : ControllerBase
     public void Delete(long id)
     {
         _bookRepository.Delete(id);
-
     }
 
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(long id, [FromBody] Book book)
     {
-
         try
         {
             var updatedBook = await _bookRepository.Update(new Book { Id = id, Title = book.Title, Author = book.Author });

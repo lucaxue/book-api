@@ -45,10 +45,10 @@ public class BookRepository : BaseRepository, IRepository<Book>
         return await connection.QueryAsync<Book>("SELECT * FROM Books WHERE LOWER(Title) LIKE @Query OR LOWER(Author) LIKE @Query;", new { Query = $"%{query}%" });
 
     }
-    public async Task<IEnumerable<Book>> Limit(int limit)
+    public async Task<IEnumerable<Book>> Limit(int limit, int offset = 0)
     {
         using var connection = CreateConnection();
-        return await connection.QueryAsync<Book>("SELECT * FROM Books LIMIT @Limit;", new { Limit = limit });
+        return await connection.QueryAsync<Book>("SELECT * FROM Books LIMIT @Limit OFFSET @Offset;", new { Limit = limit, Offset = offset });
 
     }
 

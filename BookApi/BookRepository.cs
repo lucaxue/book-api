@@ -42,7 +42,7 @@ public class BookRepository : BaseRepository, IRepository<Book>
     public async Task<IEnumerable<Book>> Search(string query)
     {
         using var connection = CreateConnection();
-        return await connection.QueryAsync<Book>("SELECT * FROM Books WHERE LOWER(Title) LIKE @Query OR LOWER(Author) LIKE @Query;", new { Query = $"%{query}%" });
+        return await connection.QueryAsync<Book>("SELECT * FROM Books WHERE Title ILIKE @Query OR Author ILIKE @Query;", new { Query = $"%{query}%" });
 
     }
     public async Task<IEnumerable<Book>> Limit(int limit, int offset = 0)

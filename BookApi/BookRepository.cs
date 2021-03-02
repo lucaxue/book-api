@@ -39,5 +39,12 @@ public class BookRepository : BaseRepository, IRepository<Book>
         return await connection.QuerySingleAsync<Book>("INSERT INTO Books (Title, Author) VALUES (@Title, @Author) RETURNING *;", book);
     }
 
+    public async Task<IEnumerable<Book>> Search(string query)
+    {
+        using var connection = CreateConnection();
+        var books = await connection.QueryAsync<Book>("SELECT * FROM Books WHERE LOWER(Title) LIKE @Query OR WHERE LOWER(Author) LIKE @Query;", new {Query= $"%{query}%"});
+        return books;
+    }
+
 }
 

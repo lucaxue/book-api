@@ -680,19 +680,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/christina/.nuget/packages/": {}
+    "/home/luca/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/christina/Desktop/School of Code/020321/w9d2-query-strings-room-4-luca-christina/BookApi/BookApi.csproj",
+      "projectUniqueName": "/home/luca/SOCprojects/week9/day2/QueryStrings/w9d2-query-strings-room-4-luca-christina/BookApi/BookApi.csproj",
       "projectName": "BookApi",
-      "projectPath": "/Users/christina/Desktop/School of Code/020321/w9d2-query-strings-room-4-luca-christina/BookApi/BookApi.csproj",
-      "packagesPath": "/Users/christina/.nuget/packages/",
-      "outputPath": "/Users/christina/Desktop/School of Code/020321/w9d2-query-strings-room-4-luca-christina/BookApi/obj/",
+      "projectPath": "/home/luca/SOCprojects/week9/day2/QueryStrings/w9d2-query-strings-room-4-luca-christina/BookApi/BookApi.csproj",
+      "packagesPath": "/home/luca/.nuget/packages/",
+      "outputPath": "/home/luca/SOCprojects/week9/day2/QueryStrings/w9d2-query-strings-room-4-luca-christina/BookApi/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/christina/.nuget/NuGet/NuGet.Config"
+        "/home/luca/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
@@ -761,7 +761,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.102/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.102/RuntimeIdentifierGraph.json"
       }
     }
   }

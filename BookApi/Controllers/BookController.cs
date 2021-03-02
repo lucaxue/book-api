@@ -16,20 +16,20 @@ public class BookController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAll(string mysearch)
+    public async Task<IActionResult> GetAll(string mySearch)
     {
         try
-        {   
-            // if(mysearch.Length != 0)
-            // {
-                var searchBooks = await _bookRepository.Search(mysearch);
+        {
+            if (mySearch.Length != 0)
+            {
+                var searchBooks = await _bookRepository.Search(mySearch.ToLower());
                 return Ok(searchBooks);
-            // }
-            // else
-            // {   
-            //     var allBooks = await _bookRepository.GetAll();
-            //     return Ok(allBooks);
-            // }
+            }
+            else
+            {
+                var allBooks = await _bookRepository.GetAll();
+                return Ok(allBooks);
+            }
 
         }
         catch (Exception)

@@ -9,4 +9,5 @@ public interface IRepository<T>
     Task<T> Insert(T t);
 
     Task<IEnumerable<T>> Search(string s);
+    Task<IEnumerable<T>> Limit(int l);
 }

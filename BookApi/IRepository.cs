@@ -10,4 +10,5 @@ public interface IRepository<T>
 
     Task<IEnumerable<T>> Search(string s);
     Task<IEnumerable<T>> Limit(int l, int p);
+    Task<IEnumerable<T>> SearchAndLimit(string s, int l, int p);
 }

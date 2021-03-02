@@ -16,23 +16,23 @@ public class BookController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAll(string search, int limit = -1, int page = -1)
+    public async Task<IActionResult> GetAll(string search, int limit = -1, int page = 0)
     {
         try
         {
-            if (search != null)
+            if (search != null && limit >= 0)
             {
-                var searchBooks = await _bookRepository.Search(search);
-                return Ok(searchBooks);
+                var searchedAndLimitedBooks = await _bookRepository.SearchAndLimit(search, limit, page);
+                return Ok(searchedAndLimitedBooks);
             }
-            else if (page >= 0 && limit >= 0)
+            else if (search != null)
             {
-                var limitedPagedBooks = await _bookRepository.Limit(limit, (page - 1) * limit);
-                return Ok(limitedPagedBooks);
+                var searchedBooks = await _bookRepository.Search(search);
+                return Ok(searchedBooks);
             }
             else if (limit >= 0)
             {
-                var limitedBooks = await _bookRepository.Limit(limit, 0);
+                var limitedBooks = await _bookRepository.Limit(limit, page);
                 return Ok(limitedBooks);
             }
             var allBooks = await _bookRepository.GetAll();

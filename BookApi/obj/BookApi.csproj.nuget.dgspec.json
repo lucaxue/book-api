@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/luca/SOCprojects/week9/day2/QueryStrings/w9d2-query-strings-room-4-luca-christina/BookApi/BookApi.csproj": {}
+    "/Users/christina/Desktop/School of Code/020321/w9d2-query-strings-room-4-luca-christina/BookApi/BookApi.csproj": {}
   },
   "projects": {
-    "/home/luca/SOCprojects/week9/day2/QueryStrings/w9d2-query-strings-room-4-luca-christina/BookApi/BookApi.csproj": {
+    "/Users/christina/Desktop/School of Code/020321/w9d2-query-strings-room-4-luca-christina/BookApi/BookApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/luca/SOCprojects/week9/day2/QueryStrings/w9d2-query-strings-room-4-luca-christina/BookApi/BookApi.csproj",
+        "projectUniqueName": "/Users/christina/Desktop/School of Code/020321/w9d2-query-strings-room-4-luca-christina/BookApi/BookApi.csproj",
         "projectName": "BookApi",
-        "projectPath": "/home/luca/SOCprojects/week9/day2/QueryStrings/w9d2-query-strings-room-4-luca-christina/BookApi/BookApi.csproj",
-        "packagesPath": "/home/luca/.nuget/packages/",
-        "outputPath": "/home/luca/SOCprojects/week9/day2/QueryStrings/w9d2-query-strings-room-4-luca-christina/BookApi/obj/",
+        "projectPath": "/Users/christina/Desktop/School of Code/020321/w9d2-query-strings-room-4-luca-christina/BookApi/BookApi.csproj",
+        "packagesPath": "/Users/christina/.nuget/packages/",
+        "outputPath": "/Users/christina/Desktop/School of Code/020321/w9d2-query-strings-room-4-luca-christina/BookApi/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/luca/.nuget/NuGet/NuGet.Config"
+          "/Users/christina/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -83,7 +83,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.102/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.102/RuntimeIdentifierGraph.json"
         }
       }
     }

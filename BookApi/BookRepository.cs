@@ -51,10 +51,10 @@ public class BookRepository : BaseRepository, IRepository<Book>
         return await connection.QueryAsync<Book>("SELECT * FROM Books LIMIT @Limit OFFSET @Offset;", new { Limit = limit, Offset = page <= 0 ? 0 : (page - 1) * limit });
 
     }
-    public async Task<IEnumerable<Book>> SearchAndLimit(string query, int limit, int offset = 0)
+    public async Task<IEnumerable<Book>> SearchAndLimit(string query, int limit, int page = 0)
     {
         using var connection = CreateConnection();
-        return await connection.QueryAsync<Book>("SELECT * FROM Books WHERE Title ILIKE @Query OR Author ILIKE @Query LIMIT @Limit OFFSET @Offset;", new { Query = $"%{query}%", Limit = limit, Offset = offset });
+        return await connection.QueryAsync<Book>("SELECT * FROM Books WHERE Title ILIKE @Query OR Author ILIKE @Query LIMIT @Limit OFFSET @Offset;", new { Query = $"%{query}%", Limit = limit, Offset = page <= 0 ? 0 : (page - 1) * limit });
     }
 
 }

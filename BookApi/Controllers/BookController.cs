@@ -16,8 +16,9 @@ public class BookController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAll(string search, int limit = -1, int page = 0)
+    public async Task<IActionResult> GetAll(string search = null, int limit = -1, int page = 0)
     {
+        //from controller base, checks if model state is valid
         Console.WriteLine(ModelState.IsValid);
         try
         {
@@ -84,6 +85,7 @@ public class BookController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Insert([FromBody] Book book)
     {
+        //from controller base, checks if model state is valid
         Console.WriteLine(ModelState.IsValid);
         try
         {

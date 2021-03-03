@@ -64,13 +64,11 @@ public class BookController : ControllerBase
     public void Delete(long id)
     {
         _bookRepository.Delete(id);
-
     }
 
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(long id, [FromBody] Book book)
     {
-
         try
         {
             var updatedBook = await _bookRepository.Update(new Book { Id = id, Title = book.Title, Author = book.Author });

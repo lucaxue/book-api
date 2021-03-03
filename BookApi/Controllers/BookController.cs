@@ -18,6 +18,7 @@ public class BookController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetAll(string search, int limit = -1, int page = 0)
     {
+        Console.WriteLine(ModelState.IsValid);
         try
         {
             if (search != null && limit >= 0)

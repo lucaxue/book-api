@@ -5,11 +5,11 @@ public class Book
 
     //model validation
     [Required]
-    [StringLength(20)]
+    [StringLength(50)]
     public string Title { get; set; }
 
     [Required]
-    [StringLength(10)]
+    [StringLength(30)]
     //model binding - datatype
     [DataType(DataType.Text)]
 

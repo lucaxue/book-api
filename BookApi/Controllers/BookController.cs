@@ -63,9 +63,17 @@ public class BookController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public void Delete(long id)
+    public IActionResult Delete(long id)
     {
-        _bookRepository.Delete(id);
+        try
+        {
+            _bookRepository.Delete(id);
+            return Ok();
+        }
+        catch (Exception)
+        {
+            return BadRequest($"Book at {id} cannot be deleted");
+        }
     }
 
     [HttpPut("{id}")]

@@ -46,7 +46,7 @@ namespace BookApi.UnitTests
 
 
         [Fact]
-        public async Task GetAll_WhenCalled_ReturnsAllBooks()
+        public async Task GetAll_WhenCalledWithNothingPassedIn_ReturnsAllBooks()
         {
             //act
             var result = await _controller.GetAll();
@@ -54,5 +54,16 @@ namespace BookApi.UnitTests
             //assert
             books.Should().BeEquivalentTo(_books);
         }
+
+        [Fact]
+        public void Delete_WhenCalledWithId_ReturnStatusCode200()
+        {
+            //act
+            var result = _controller.Delete(2) as OkResult;
+            //assert
+            result.StatusCode.Should().Be(200);
+        }
+
+
     }
 }

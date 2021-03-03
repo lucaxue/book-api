@@ -84,6 +84,7 @@ public class BookController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Insert([FromBody] Book book)
     {
+        Console.WriteLine(ModelState.IsValid);
         try
         {
             var insertedBook = await _bookRepository.Insert(book);

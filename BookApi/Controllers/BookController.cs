@@ -8,102 +8,92 @@ using System.Threading.Tasks;
 [Route("Books")]
 public class BookController : ControllerBase
 {
-    private readonly IRepository<Book> _bookRepository;
+  private readonly IRepository<Book> _bookRepository;
 
-    public BookController(IRepository<Book> bookRepository)
+  public BookController(IRepository<Book> bookRepository)
+  {
+    _bookRepository = bookRepository;
+  }
+
+  [HttpGet]
+  public async Task<IActionResult> GetAll(string search = "", int limit = 100, int page = 1)
+  {
+    //from controller base, checks if model state is valid
+    Console.WriteLine(ModelState.IsValid);
+    try
     {
-        _bookRepository = bookRepository;
+      var booksResult = await _bookRepository.Search(search, limit, page);
+      return Ok(booksResult);
+      // Console.WriteLine("All books");
+      // var allBooks = await _bookRepository.GetAll();
+      // return Ok(allBooks);
     }
-
-    [HttpGet]
-    public async Task<IActionResult> GetAll(string search = null, int limit = -1, int page = 0)
+    catch (Exception)
     {
-        //from controller base, checks if model state is valid
-        Console.WriteLine(ModelState.IsValid);
-        try
-        {
-            if (search != null && limit >= 0)
-            {
-                var searchedAndLimitedBooks = await _bookRepository.SearchAndLimit(search, limit, page);
-                return Ok(searchedAndLimitedBooks);
-            }
-            else if (search != null)
-            {
-                var searchedBooks = await _bookRepository.Search(search);
-                return Ok(searchedBooks);
-            }
-            else if (limit >= 0)
-            {
-                var limitedBooks = await _bookRepository.Limit(limit, page);
-                return Ok(limitedBooks);
-            }
-            var allBooks = await _bookRepository.GetAll();
-            return Ok(allBooks);
-        }
-        catch (Exception)
-        {
-            return NotFound("There are no books.");
-        }
+      if (limit < 0 || page <= 0)
+      {
+        return BadRequest($"Sorry, the {(page <= 0 ? "page" : "limit")} entered is not valid.\nTry entering a positive number.");
+      }
+      return NotFound("Sorry, there are no books in the database.\nTry posting some books.");
     }
+  }
 
 
-    [HttpGet("{id}")]
-    public async Task<IActionResult> Get(long id)
+  [HttpGet("{id}")]
+  public async Task<IActionResult> Get(long id)
+  {
+    try
     {
-        try
-        {
-            var returnedBook = await _bookRepository.Get(id);
-            return Ok(returnedBook);
-        }
-        catch (Exception)
-        {
-            return StatusCode(418);
-            //I'm a teapot error
-        }
+      var returnedBook = await _bookRepository.Get(id);
+      return Ok(returnedBook);
     }
-
-    [HttpDelete("{id}")]
-    public IActionResult Delete(long id)
+    catch (Exception)
     {
-        try
-        {
-            _bookRepository.Delete(id);
-            return Ok();
-        }
-        catch (Exception)
-        {
-            return BadRequest($"Book at {id} cannot be deleted");
-        }
+      return NotFound($"Sorry, book of id {id} cannot be fetched, since it does not exist.\nAre you sure the id is correct?");
     }
+  }
 
-    [HttpPut("{id}")]
-    public async Task<IActionResult> Update(long id, [FromBody] Book book)
+  [HttpDelete("{id}")]
+  public IActionResult Delete(long id)
+  {
+    try
     {
-        try
-        {
-            var updatedBook = await _bookRepository.Update(new Book { Id = id, Title = book.Title, Author = book.Author });
-            return Ok(updatedBook);
-        }
-        catch (Exception)
-        {
-            return BadRequest($"Can't update a book that doesn't exist, Book of ID {id}");
-        }
+      _bookRepository.Delete(id);
+      return Ok();
     }
+    catch (Exception)
+    {
+      return BadRequest($"Sorry, book of id {id} cannot be deleted, since it does not exit.\nAre you sure the id is correct?");
+    }
+  }
 
-    [HttpPost]
-    public async Task<IActionResult> Insert([FromBody] Book book)
+  [HttpPut("{id}")]
+  public async Task<IActionResult> Update(long id, [FromBody] Book book)
+  {
+    try
     {
-        //from controller base, checks if model state is valid
-        Console.WriteLine(ModelState.IsValid);
-        try
-        {
-            var insertedBook = await _bookRepository.Insert(book);
-            return Created($"/books/{insertedBook.Id}", insertedBook);
-        }
-        catch (Exception)
-        {
-            return BadRequest($"Sorry can't insert new book.");
-        }
+      var updatedBook = await _bookRepository.Update(new Book { Id = id, Title = book.Title, Author = book.Author });
+      return Ok(updatedBook);
     }
+    catch (Exception)
+    {
+      return BadRequest($"Sorry, book of id {id} cannot be updated, since it does not exist.\nAre you sure the id is correct?");
+    }
+  }
+
+  [HttpPost]
+  public async Task<IActionResult> Insert([FromBody] Book book)
+  {
+    //from controller base, checks if model state is valid
+    Console.WriteLine(ModelState.IsValid);
+    try
+    {
+      var insertedBook = await _bookRepository.Insert(book);
+      return Created($"/books/{insertedBook.Id}", insertedBook);
+    }
+    catch (Exception)
+    {
+      return BadRequest($"Sorry, cannot insert new book.\nAre you sure the book is valid?");
+    }
+  }
 }
-

@@ -60,6 +60,10 @@
                 "NU1605"
               ]
             },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.16.1, )"
+            },
             "NSubstitute": {
               "target": "Package",
               "version": "[4.2.2, )"

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "KBft7X93LITnS46xfuZuJqA5MohXPaE+TRaI214d+vTk0lzWSS8/Mm+HKyAld3TevzObsFZOtD0dtawFrRhRBw==",
+  "dgSpecHash": "qDPujy+7y+y9eAkP8QqGjgVU4Af+rJzPW9kHYcwmRGgTvfiGjpbpGmgYnRWtHEsI/7TW5kqhPo4QkYSlpmwQmw==",
   "success": true,
   "projectFilePath": "/home/luca/SOCprojects/week9/day2/QueryStrings/w9d2-query-strings-room-4-luca-christina/BookApi/BookApi.csproj",
   "expectedPackageFiles": [
@@ -20,6 +20,7 @@
     "/home/luca/.nuget/packages/microsoft.netcore.targets/1.1.0/microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "/home/luca/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
     "/home/luca/.nuget/packages/microsoft.win32.primitives/4.3.0/microsoft.win32.primitives.4.3.0.nupkg.sha512",
+    "/home/luca/.nuget/packages/moq/4.16.1/moq.4.16.1.nupkg.sha512",
     "/home/luca/.nuget/packages/netstandard.library/1.6.1/netstandard.library.1.6.1.nupkg.sha512",
     "/home/luca/.nuget/packages/npgsql/5.0.3/npgsql.5.0.3.nupkg.sha512",
     "/home/luca/.nuget/packages/nsubstitute/4.2.2/nsubstitute.4.2.2.nupkg.sha512",
@@ -103,7 +104,7 @@
     "/home/luca/.nuget/packages/system.text.regularexpressions/4.3.0/system.text.regularexpressions.4.3.0.nupkg.sha512",
     "/home/luca/.nuget/packages/system.threading/4.3.0/system.threading.4.3.0.nupkg.sha512",
     "/home/luca/.nuget/packages/system.threading.tasks/4.3.0/system.threading.tasks.4.3.0.nupkg.sha512",
-    "/home/luca/.nuget/packages/system.threading.tasks.extensions/4.3.0/system.threading.tasks.extensions.4.3.0.nupkg.sha512",
+    "/home/luca/.nuget/packages/system.threading.tasks.extensions/4.5.4/system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "/home/luca/.nuget/packages/system.threading.timer/4.3.0/system.threading.timer.4.3.0.nupkg.sha512",
     "/home/luca/.nuget/packages/system.xml.readerwriter/4.3.0/system.xml.readerwriter.4.3.0.nupkg.sha512",
     "/home/luca/.nuget/packages/system.xml.xdocument/4.3.0/system.xml.xdocument.4.3.0.nupkg.sha512",

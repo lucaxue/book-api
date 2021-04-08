@@ -1,8 +1,8 @@
 # Dapper Npgsql ASP.NET Core API
 
-# A simple REST API for a books table.
+## A simple REST API for a books table.
 
-## `/books`
+### `/books`
 
 - Get all books
 - Get book by id

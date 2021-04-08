@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 
 [ApiController]
-[Route("Books")]
+[Route("[controller]s")]
 public class BookController : ControllerBase
 {
   private readonly IRepository<Book> _bookRepository;

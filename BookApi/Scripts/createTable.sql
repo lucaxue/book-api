@@ -8,7 +8,6 @@ CREATE TABLE Books
 INSERT INTO Books 
   (Title, Author)
 VALUES 
-  ('Harry Potter', 'JK Rowlings'),
   ('Code', 'Charles Petzold'),
   ('Homo Deus', 'Yuval Noah Harari'),
   ('A game of thrones', 'George R.R. Martin');

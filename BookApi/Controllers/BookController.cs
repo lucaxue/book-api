@@ -19,7 +19,7 @@ public class BookController : ControllerBase
   public async Task<IActionResult> GetAll(string search = "", int limit = 100, int page = 1)
   {
     //from controller base, checks if model state is valid
-    Console.WriteLine(ModelState.IsValid);
+    // Console.WriteLine(ModelState.IsValid);
     try
     {
       var booksResult = await _bookRepository.Search(search, limit, page);
@@ -34,7 +34,7 @@ public class BookController : ControllerBase
       {
         return BadRequest($"Sorry, the {(page <= 0 ? "page" : "limit")} entered is not valid.\nTry entering a positive number.");
       }
-      return NotFound("Sorry, there are no books in the database.\nTry posting some books.");
+      return NotFound("Sorry, could not get any books from the repository.\nPlease try another request.");
     }
   }
 
@@ -72,7 +72,8 @@ public class BookController : ControllerBase
   {
     try
     {
-      var updatedBook = await _bookRepository.Update(new Book { Id = id, Title = book.Title, Author = book.Author });
+      book.Id = id;
+      var updatedBook = await _bookRepository.Update(book);
       return Ok(updatedBook);
     }
     catch (Exception)
@@ -84,8 +85,6 @@ public class BookController : ControllerBase
   [HttpPost]
   public async Task<IActionResult> Insert([FromBody] Book book)
   {
-    //from controller base, checks if model state is valid
-    Console.WriteLine(ModelState.IsValid);
     try
     {
       var insertedBook = await _bookRepository.Insert(book);

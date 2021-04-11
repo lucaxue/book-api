@@ -1,7 +1,6 @@
 using System;
 using Xunit;
 using NSubstitute;
-using Moq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -135,6 +134,46 @@ namespace BookApi.UnitTests
     }
 
     [Fact]
+    public async Task GetAll_WhenCalledWithLimitPassedIn_ReturnsStatusCode200()
+    {
+      //act
+      var result = await _controller.GetAll("", 2);
+      var statusCode = ((OkObjectResult)result).StatusCode;
+      //assert
+      statusCode.Should().Be(200);
+    }
+
+    [Fact]
+    public async Task GetAll_WhenCalledWithLimitPassedIn_ReturnsCorrectLimitedBooks()
+    {
+      //act
+      var result = await _controller.GetAll("", 2);
+      var books = ((OkObjectResult)result).Value as List<Book>;
+      //assert
+      books.Should().BeEquivalentTo(new List<Book>() { _books[0], _books[1] });
+    }
+
+    [Fact]
+    public async Task GetAll_WhenCalledWithLimitAndPagePassedIn_ReturnsStatusCode200()
+    {
+      //act
+      var result = await _controller.GetAll("", 2, 2);
+      var statusCode = ((OkObjectResult)result).StatusCode;
+      //assert
+      statusCode.Should().Be(200);
+    }
+
+    [Fact]
+    public async Task GetAll_WhenCalledWithLimitAndPagePassedIn_ReturnsCorrectPageOfLimitedBooks()
+    {
+      //act
+      var result = await _controller.GetAll("", 2, 2);
+      var books = ((OkObjectResult)result).Value as List<Book>;
+      //assert
+      books.Should().BeEquivalentTo(new List<Book>() { _books[2], _books[3] });
+    }
+
+    [Fact]
     public async Task Get_WhenCalledWithIdPassedIn_ReturnsStatusCode200()
     {
       //act
@@ -202,7 +241,5 @@ namespace BookApi.UnitTests
       //assert
       insertedBook.Should().BeEquivalentTo(_bookInserted);
     }
-
-
   }
 }

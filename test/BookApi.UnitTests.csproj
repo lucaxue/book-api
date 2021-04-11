@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BookApi\BookApi.csproj" />
+    <ProjectReference Include="..\src\BookApi.csproj" />
   </ItemGroup>
 
 </Project>

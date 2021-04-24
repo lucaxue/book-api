@@ -40,6 +40,7 @@
     
       - Go to your Heroku app then navigate to your database credentials
         <br/>
+        
         ```Resources > Heroku Postgres add-on > Settings > Database Credentials > View Credentials```
       - If you're using the psql CLI to connect to the database, you can do so with its URI.
 

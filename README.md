@@ -39,8 +39,10 @@
       <p>
     
       - Go to your Heroku app then navigate to your database credentials
-        - ```Resources > Heroku Postgres add-on > Settings > Database Credentials > View Credentials```
+        <br/>
+        ```Resources > Heroku Postgres add-on > Settings > Database Credentials > View Credentials```
       - If you're using the psql CLI to connect to the database, you can do so with its URI.
+
         ```
         psql <URI>
         ```
@@ -52,8 +54,7 @@
       <summary>Create and populate tables in the database</summary>
       <p>
     
-      - Use the script below to create and populate the tables.
-        - `src/Scripts/createTable.sql`
+      - Use `src/Scripts/createTable.sql` to create and populate the tables.
       - If you're using psql, while connected to the database, you can simply copy and paste the script.
     
       </p>

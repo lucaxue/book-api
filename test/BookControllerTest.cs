@@ -86,11 +86,6 @@ namespace BookApi.UnitTests
       bookRepository.Insert(_bookToInsert).Returns(x => _bookInserted);
 
       _controller = new BookController(bookRepository);
-
-      // Same as above but with Moq
-      // var bookRepository = new Mock<IRepository<Book>>();
-      // bookRepository.Setup(r => r.GetAll().Result).Returns(_books);
-      // _controller = new BookController(bookRepository.Object);
     }
 
     [Fact]

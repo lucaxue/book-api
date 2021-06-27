@@ -30,9 +30,15 @@ namespace BookApi.Controllers
             {
                 if (limit < 0 || page <= 0)
                 {
-                    return BadRequest($"Sorry, the {(page <= 0 ? "page" : "limit")} entered is not valid.\nTry entering a positive number.");
+                    return BadRequest(
+                        $@"Sorry, the {(page <= 0 ? "page" : "limit")} entered is not valid.
+                        Try entering a positive number."
+                    );
                 }
-                return NotFound("Sorry, could not get any books from the repository.\nPlease try another request.");
+                return NotFound(
+                    @"Sorry, could not get any books from the repository.
+                    Please try another request."
+                );
             }
         }
 
@@ -47,7 +53,10 @@ namespace BookApi.Controllers
             }
             catch (Exception)
             {
-                return NotFound($"Sorry, book of id {id} cannot be fetched, since it does not exist.\nAre you sure the id is correct?");
+                return NotFound(
+                    $@"Sorry, book of id {id} cannot be fetched, since it does not exist.
+                    Are you sure the id is correct?"
+                );
             }
         }
 
@@ -57,11 +66,17 @@ namespace BookApi.Controllers
             try
             {
                 var insertedBook = await _bookRepository.Create(book);
-                return Created($"/books/{insertedBook.Id}", insertedBook);
+                return Created(
+                    $"/books/{insertedBook.Id}",
+                    insertedBook
+                );
             }
             catch (Exception)
             {
-                return BadRequest($"Sorry, cannot insert new book.\nAre you sure the book is valid?");
+                return BadRequest(
+                    $@"Sorry, cannot insert new book.
+                    Are you sure the book is valid?"
+                );
             }
         }
 
@@ -76,7 +91,10 @@ namespace BookApi.Controllers
             }
             catch (Exception)
             {
-                return BadRequest($"Sorry, book of id {id} cannot be updated, since it does not exist.\nAre you sure the id is correct?");
+                return BadRequest(
+                    $@"Sorry, book of id {id} cannot be updated, since it does not exist.
+                    Are you sure the id is correct?"
+                );
             }
         }
 
@@ -91,7 +109,10 @@ namespace BookApi.Controllers
             }
             catch (Exception)
             {
-                return BadRequest($"Sorry, book of id {id} cannot be deleted, since it does not exit.\nAre you sure the id is correct?");
+                return BadRequest(
+                    $@"Sorry, book of id {id} cannot be deleted, since it does not exit.
+                    Are you sure the id is correct?"
+                );
             }
         }
     }

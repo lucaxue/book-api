@@ -11,6 +11,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using BookApi.Controllers;
+using BookApi.Data;
+using BookApi.Models;
 
 namespace Configuration
 {

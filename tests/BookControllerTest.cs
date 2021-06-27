@@ -82,7 +82,9 @@ namespace BookApi.UnitTests
         [Fact]
         public async Task Index_NoArguments_ReturnAllBooks()
         {
-            _repository.Search("", 100, 1).Returns(x => _books);
+            _repository
+                .Search("", 100, 1)
+                .Returns(x => _books);
 
             var result = await _controller.Index();
 
@@ -96,7 +98,14 @@ namespace BookApi.UnitTests
         [Fact]
         public async Task Index_WithSearchQuery_ReturnsCorrectBooks()
         {
-            _repository.Search("test", 100, 1).Returns(x => new List<Book>() { _books[1], _books[2] });
+            _repository
+                .Search("test", 100, 1)
+                .Returns(x =>
+                    new List<Book>()
+                    {
+                        _books[1],
+                        _books[2]
+                    });
 
             var result = await _controller.Index("test");
 
@@ -110,7 +119,14 @@ namespace BookApi.UnitTests
         [Fact]
         public async Task Index_WithPageLimit_ReturnsCorrectLimitedBooks()
         {
-            _repository.Search("", 2, 1).Returns(x => new List<Book>() { _books[0], _books[1] });
+            _repository
+                .Search("", 2, 1)
+                .Returns(x =>
+                    new List<Book>()
+                    {
+                        _books[0],
+                        _books[1]
+                    });
 
             var result = await _controller.Index("", 2);
 
@@ -124,7 +140,14 @@ namespace BookApi.UnitTests
         [Fact]
         public async Task Index_WithPageLimitAndPageNumber_ReturnsCorrectPageOfLimitedBooks()
         {
-            _repository.Search("", 2, 2).Returns(x => new List<Book>() { _books[2], _books[3] });
+            _repository
+                .Search("", 2, 2)
+                .Returns(x =>
+                    new List<Book>()
+                    {
+                        _books[2],
+                        _books[3]
+                    });
 
             var result = await _controller.Index("", 2, 2);
 
@@ -138,7 +161,9 @@ namespace BookApi.UnitTests
         [Fact]
         public async Task Show_WithId_ReturnsCorrectBook()
         {
-            _repository.Find(56).Returns(x => _books[2]);
+            _repository
+                .Find(56)
+                .Returns(x => _books[2]);
 
             var result = await _controller.Show(56);
 
@@ -152,7 +177,9 @@ namespace BookApi.UnitTests
         [Fact]
         public async Task Store_WithBookToStore_ReturnsBookStored()
         {
-            _repository.Create(_bookToStore).Returns(x => _bookStored);
+            _repository
+                .Create(_bookToStore)
+                .Returns(x => _bookStored);
 
             var result = await _controller.Store(_bookToStore);
 
@@ -166,7 +193,9 @@ namespace BookApi.UnitTests
         [Fact]
         public async Task Update_WithIdAndBookToUpdate_ReturnsUpdatedBook()
         {
-            _repository.Update(_bookUpdate).Returns(x => _bookUpdate);
+            _repository
+                .Update(_bookUpdate)
+                .Returns(x => _bookUpdate);
 
             var result = await _controller.Update(56, _bookUpdate);
 

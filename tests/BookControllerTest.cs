@@ -16,9 +16,6 @@ namespace BookApi.UnitTests
         readonly BookController _controller;
         IRepository<Book> _repository;
         readonly List<Book> _books;
-        readonly Book _bookUpdate;
-        readonly Book _bookToStore;
-        readonly Book _bookStored;
 
         public BookControllerTest()
         {
@@ -55,26 +52,6 @@ namespace BookApi.UnitTests
                 }
             };
 
-            _bookUpdate = new Book
-            {
-                Id = 56,
-                Title = "Testing is Essential",
-                Author = "Luca"
-            };
-
-            _bookToStore = new Book
-            {
-                Title = "Do you like testing",
-                Author = "Yes"
-            };
-
-            _bookStored = new Book
-            {
-                Id = 57,
-                Title = "Do you like testing",
-                Author = "Yes"
-            };
-
             _repository = Substitute.For<IRepository<Book>>();
             _controller = new BookController(_repository);
         }
@@ -98,14 +75,10 @@ namespace BookApi.UnitTests
         [Fact]
         public async Task Index_WithSearchQuery_ReturnsCorrectBooks()
         {
+            var searchedBooks = new List<Book> { _books[1], _books[2] };
             _repository
                 .Search("test", 100, 1)
-                .Returns(x =>
-                    new List<Book>()
-                    {
-                        _books[1],
-                        _books[2]
-                    });
+                .Returns(x => searchedBooks);
 
             var result = await _controller.Index("test");
 
@@ -113,20 +86,16 @@ namespace BookApi.UnitTests
             var books = ((OkObjectResult)result).Value as List<Book>;
 
             statusCode.Should().Be(200);
-            books.Should().BeEquivalentTo(new List<Book>() { _books[1], _books[2] });
+            books.Should().BeEquivalentTo(searchedBooks);
         }
 
         [Fact]
         public async Task Index_WithPageLimit_ReturnsCorrectLimitedBooks()
         {
+            var limitedBooks = new List<Book> { _books[0], _books[1] };
             _repository
                 .Search("", 2, 1)
-                .Returns(x =>
-                    new List<Book>()
-                    {
-                        _books[0],
-                        _books[1]
-                    });
+                .Returns(x => limitedBooks);
 
             var result = await _controller.Index("", 2);
 
@@ -134,20 +103,16 @@ namespace BookApi.UnitTests
             var books = ((OkObjectResult)result).Value as List<Book>;
 
             statusCode.Should().Be(200);
-            books.Should().BeEquivalentTo(new List<Book>() { _books[0], _books[1] });
+            books.Should().BeEquivalentTo(limitedBooks);
         }
 
         [Fact]
         public async Task Index_WithPageLimitAndPageNumber_ReturnsCorrectPageOfLimitedBooks()
         {
+            var paginatedBooks = new List<Book> { _books[2], _books[3] };
             _repository
                 .Search("", 2, 2)
-                .Returns(x =>
-                    new List<Book>()
-                    {
-                        _books[2],
-                        _books[3]
-                    });
+                .Returns(x => paginatedBooks);
 
             var result = await _controller.Index("", 2, 2);
 
@@ -155,7 +120,7 @@ namespace BookApi.UnitTests
             var books = ((OkObjectResult)result).Value as List<Book>;
 
             statusCode.Should().Be(200);
-            books.Should().BeEquivalentTo(new List<Book>() { _books[2], _books[3] });
+            books.Should().BeEquivalentTo(paginatedBooks);
         }
 
         [Fact]
@@ -177,33 +142,53 @@ namespace BookApi.UnitTests
         [Fact]
         public async Task Store_WithBookToStore_ReturnsBookStored()
         {
-            _repository
-                .Create(_bookToStore)
-                .Returns(x => _bookStored);
+            var bookToStore = new Book
+            {
+                Title = "Do you like testing",
+                Author = "Yes"
+            };
 
-            var result = await _controller.Store(_bookToStore);
+            var bookStored = new Book
+            {
+                Id = 57,
+                Title = "Do you like testing",
+                Author = "Yes"
+            };
+
+            _repository
+                .Create(bookToStore)
+                .Returns(x => bookStored);
+
+            var result = await _controller.Store(bookToStore);
 
             var statusCode = ((ObjectResult)result).StatusCode;
             var storedBook = ((ObjectResult)result).Value as Book;
 
             statusCode.Should().Be(201);
-            storedBook.Should().BeEquivalentTo(_bookStored);
+            storedBook.Should().BeEquivalentTo(bookStored);
         }
 
         [Fact]
         public async Task Update_WithIdAndBookToUpdate_ReturnsUpdatedBook()
         {
-            _repository
-                .Update(_bookUpdate)
-                .Returns(x => _bookUpdate);
+            var bookUpdate = new Book
+            {
+                Id = 56,
+                Title = "Testing is Essential",
+                Author = "Luca"
+            };
 
-            var result = await _controller.Update(56, _bookUpdate);
+            _repository
+                .Update(bookUpdate)
+                .Returns(x => bookUpdate);
+
+            var result = await _controller.Update(56, bookUpdate);
 
             var statusCode = ((OkObjectResult)result).StatusCode;
             var updatedBook = ((OkObjectResult)result).Value as Book;
 
             statusCode.Should().Be(200);
-            updatedBook.Should().BeEquivalentTo(_bookUpdate);
+            updatedBook.Should().BeEquivalentTo(bookUpdate);
         }
 
 

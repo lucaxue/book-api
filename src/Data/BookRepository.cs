@@ -15,8 +15,16 @@ namespace BookApi.Data
         {
             using var connection = CreateConnection();
             return await connection.QueryAsync<Book>(
-                "SELECT * FROM Books WHERE Title ILIKE @Query OR Author ILIKE @Query LIMIT @Limit OFFSET @Offset;",
-                new { Query = $"%{query}%", Limit = limit, Offset = (page - 1) * limit }
+                "SELECT * FROM Books " +
+                "WHERE Title ILIKE @Query OR " +
+                "Author ILIKE @Query " +
+                "LIMIT @Limit OFFSET @Offset;",
+                new
+                {
+                    Query = $"%{query}%",
+                    Limit = limit,
+                    Offset = (page - 1) * limit
+                }
             );
         }
 
@@ -24,7 +32,8 @@ namespace BookApi.Data
         {
             using var connection = CreateConnection();
             return await connection.QuerySingleAsync<Book>(
-                "SELECT * FROM Books WHERE Id = @Id;",
+                "SELECT * FROM Books " +
+                "WHERE Id = @Id;",
                 new { Id = id }
             );
         }
@@ -33,7 +42,9 @@ namespace BookApi.Data
         {
             using var connection = CreateConnection();
             return await connection.QuerySingleAsync<Book>(
-                "INSERT INTO Books (Title, Author) VALUES (@Title, @Author) RETURNING *;",
+                "INSERT INTO Books (Title, Author) " +
+                "VALUES (@Title, @Author) " +
+                "RETURNING *;",
                 book
             );
         }
@@ -42,7 +53,11 @@ namespace BookApi.Data
         {
             using var connection = CreateConnection();
             return await connection.QuerySingleAsync<Book>(
-                "UPDATE Books SET Title = @Title, Author = @Author WHERE Id = @Id RETURNING *",
+                "UPDATE Books " +
+                "SET Title = @Title, " +
+                "Author = @Author " +
+                "WHERE Id = @Id " +
+                "RETURNING *",
                 book
             );
         }
@@ -51,7 +66,8 @@ namespace BookApi.Data
         {
             using var connection = CreateConnection();
             connection.Execute(
-                "DELETE FROM Books WHERE Id = @Id;",
+                "DELETE FROM Books " +
+                "WHERE Id = @Id;",
                 new { Id = id }
             );
         }

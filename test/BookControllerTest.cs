@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using Xunit;
 using NSubstitute;
 using FluentAssertions;
+using BookApi.Controllers;
+using BookApi.Data;
+using BookApi.Models;
 
 namespace BookApi.UnitTests
 {

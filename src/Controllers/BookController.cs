@@ -16,17 +16,12 @@ public class BookController : ControllerBase
   }
 
   [HttpGet]
-  public async Task<IActionResult> GetAll(string search = "", int limit = 100, int page = 1)
+  public async Task<IActionResult> Index(string search = "", int limit = 100, int page = 1)
   {
-    //from controller base, checks if model state is valid
-    // Console.WriteLine(ModelState.IsValid);
     try
     {
       var booksResult = await _bookRepository.Search(search, limit, page);
       return Ok(booksResult);
-      // Console.WriteLine("All books");
-      // var allBooks = await _bookRepository.GetAll();
-      // return Ok(allBooks);
     }
     catch (Exception)
     {
@@ -40,11 +35,11 @@ public class BookController : ControllerBase
 
 
   [HttpGet("{id}")]
-  public async Task<IActionResult> Get(long id)
+  public async Task<IActionResult> Show(long id)
   {
     try
     {
-      var returnedBook = await _bookRepository.Get(id);
+      var returnedBook = await _bookRepository.Find(id);
       return Ok(returnedBook);
     }
     catch (Exception)
@@ -53,17 +48,17 @@ public class BookController : ControllerBase
     }
   }
 
-  [HttpDelete("{id}")]
-  public IActionResult Delete(long id)
+  [HttpPost]
+  public async Task<IActionResult> Store([FromBody] Book book)
   {
     try
     {
-      _bookRepository.Delete(id);
-      return Ok();
+      var insertedBook = await _bookRepository.Create(book);
+      return Created($"/books/{insertedBook.Id}", insertedBook);
     }
     catch (Exception)
     {
-      return BadRequest($"Sorry, book of id {id} cannot be deleted, since it does not exit.\nAre you sure the id is correct?");
+      return BadRequest($"Sorry, cannot insert new book.\nAre you sure the book is valid?");
     }
   }
 
@@ -82,17 +77,18 @@ public class BookController : ControllerBase
     }
   }
 
-  [HttpPost]
-  public async Task<IActionResult> Insert([FromBody] Book book)
+
+  [HttpDelete("{id}")]
+  public IActionResult Destroy(long id)
   {
     try
     {
-      var insertedBook = await _bookRepository.Insert(book);
-      return Created($"/books/{insertedBook.Id}", insertedBook);
+      _bookRepository.Delete(id);
+      return Ok();
     }
     catch (Exception)
     {
-      return BadRequest($"Sorry, cannot insert new book.\nAre you sure the book is valid?");
+      return BadRequest($"Sorry, book of id {id} cannot be deleted, since it does not exit.\nAre you sure the id is correct?");
     }
   }
 }

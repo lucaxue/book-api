@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+  api:
+    image: lucaxue/bookapi:1.0
+    container_name: api
+    build:
+      context: .
+    ports: 
+      - "5000:5000"
+    depends_on:
+      - database
+    networks:
+      - backend
+    env_file:
+      - ./src/.env
+    
+  database:
+    image: postgres:13.3
+    container_name: postgresql 
+    networks:
+      - backend
+    env_file:
+      - ./src/.env
+
+networks:
+  backend:
+    driver: bridge
+

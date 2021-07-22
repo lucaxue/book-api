@@ -1,85 +1,72 @@
-# Dapper Npgsql ASP.NET Core API
+<div align='center'>
 
-## A simple REST API for a books table.
+# 📚 Books REST API
 
-### `/books`
+<div>
 
-- Get all books
-- Get book by id
-- Post book
-- Update book
-- Delete book
-- Search books by title or author - case insensitive, and any part of the word
-  - `/books?search=code`
-- Limit books returned
-  - `/books?limit=5`
-- Paginate books returned, the limit is the amount of books per page
-  - `/books?limit=5&page=2`
+![ASP.NET Core](https://img.shields.io/badge/ASP.NET%20Core-2e2e2e?logo=dotnet)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-2e2e2e?logo=postgresql)
+![Dapper ORM](https://img.shields.io/badge/Dapper%20ORM-2e2e2e?logo=dapper)
+<br>
+![xUnit](https://img.shields.io/badge/xUnit-2e2e2e?logo=xunit)
+![FluentAssertions](https://img.shields.io/badge/Fluent%20Assertions-2e2e2e?logo=fluentassertions)
 
+</div>
 
-<br/>
-<br/>
-<details>
-  <summary>Click to see how to setup this API</summary>  
+A simple REST API, following repository pattern for a books table.
 
-  - Clone this repository
-  - <details>
-      <summary>Make a Heroku App with the Heroku Postgres add-on</summary>
-      <p>
-    
-      - Login to your Heroku account and go to your [apps](https://dashboard.heroku.com/apps)
-      - Create a new app
-      - Go to Resources and add the add-on called ```Heroku Postgres```
-    
-      </p>
-    </details>
-    
-    <details>
-      <summary>Connect to the database with its credentials</summary>
-      <p>
-    
-      - Go to your Heroku app then navigate to your database credentials
-        <br/>
-        
-        ```Resources > Heroku Postgres add-on > Settings > Database Credentials > View Credentials```
-      - If you're using the psql CLI to connect to the database, you can do so with its URI.
+</div>
 
-        ```
-        psql <URI>
-        ```
-    
-      </p>
-    </details>
-    
-    <details>
-      <summary>Create and populate tables in the database</summary>
-      <p>
-    
-      - Use `src/Scripts/createTable.sql` to create and populate the tables.
-      - If you're using psql, while connected to the database, you can simply copy and paste the script.
-    
-      </p>
-    </details>
-    
-    <details>
-      <summary>Add the user secrets for the database credentials</summary>
-      <p>
-      
-      - Run these commands in your terminal with the correct credentials
-    
-        ```
-        cd src
-        ```
-        ```
-        dotnet user-secrets set "PGHOST" "<Host>"
-        dotnet user-secrets set "PGDATABASE" "<Database>"
-        dotnet user-secrets set "PGUSER" "<User>"
-        dotnet user-secrets set "PGPORT" "<Port>"
-        dotnet user-secrets set "PGPASSWORD" "<Password>"
-        ```
-    
-      </p>
-    </details>
-  - Use ```dotnet run``` and you're good to go!
+<br>
 
-</details>
+## 📄 API Specs
+
+### GET
+
+| Use                            | Endpoint                |
+| ------------------------------ | ----------------------- |
+| Index all books                | `/books`                |
+| Show book by id                | `/books/{id}`           |
+| Index books by title or author | `/books?search=foo`     |
+| Index books with custom limit  | `books?limit=5`         |
+| Paginate books                 | `/books?limit=5&page=3` |
+
+### POST
+
+| Use             | Endpoint |
+| --------------- | -------- |
+| Create new book | `/books` |
+
+### PUT
+
+| Use         | Endpoint      |
+| ----------- | ------------- |
+| Update book | `/books/{id}` |
+
+### DELETE
+
+| Use          | Endpoint      |
+| ------------ | ------------- |
+| Destroy book | `/books/{id}` |
+
+<br>
+
+## ⚙️ Setting Up
+
+### `src/`
+
+- Copy and set up enviroment variables for database
+  ```
+  cp .env.example .env
+  ```
+- Run the app on your local port
+  ```
+  dotnet watch run
+  ```
+
+### `tests/`
+
+- Run tests
+  ```
+  dotnet test
+  ```

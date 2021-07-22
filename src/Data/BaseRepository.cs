@@ -18,11 +18,11 @@ namespace BookApi.Data
         {
             var stringBuilder = new NpgsqlConnectionStringBuilder
             {
-                Host = _configuration["PGHOST"],
-                Database = _configuration["PGDATABASE"],
-                Username = _configuration["PGUSER"],
-                Port = Int32.Parse(_configuration["PGPORT"]),
-                Password = _configuration["PGPASSWORD"],
+                Host = _configuration["POSTGRES_HOST"],
+                Database = _configuration["POSTGRES_DB"],
+                Username = _configuration["POSTGRES_USER"],
+                Port = Int32.Parse(_configuration["POSTGRES_PORT"]),
+                Password = _configuration["POSTGRES_PASSWORD"],
                 SslMode = SslMode.Require,
                 TrustServerCertificate = true
             };

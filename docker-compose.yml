@@ -12,6 +12,8 @@ services:
       - database
     networks:
       - backend
+    volumes:
+      - "./:/app/"
     env_file:
       - ./src/.env
     

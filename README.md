@@ -53,20 +53,78 @@ A simple REST API, following repository pattern for a books table.
 
 ## ⚙️ Setting Up
 
-### `src/`
+- [Local](###Local%20💻)
+- [Docker](###Docker%20🐳)
 
-- Copy and set up enviroment variables for database
-  ```
-  cp .env.example .env
-  ```
-- Run the app on your local port
-  ```
-  dotnet watch run
-  ```
+### Local 💻
 
-### `tests/`
+#### Prerequisites:
 
-- Run tests
-  ```
-  dotnet test
-  ```
+- .NET 5.0
+- PostgreSQL
+
+#### Running the api locally (in `src/`)
+
+1. Copy and set up enviroment variables for the database
+
+    ```bash
+    cp .env.example .env
+    ```
+
+2. Run the app on your local port
+
+    ```bash
+    dotnet watch run
+    ```
+
+#### Running the tests (in `tests/`)
+
+1. Run the tests
+
+    ```bash
+    dotnet test
+    ```
+
+### Docker 🐳
+
+#### Prerequisites:
+
+- Docker
+
+#### Running the containers
+
+1. Copy enviroment variables for the database
+
+    ```bash
+    cp src/.env.example src/.env
+    ```
+
+2. Build docker images
+
+    ```bash
+    docker compose build
+    ```
+
+2. Run docker containers
+
+    ```bash
+    docker compose up
+    ```
+
+#### Running the tests
+
+1. Shell into the api service container
+
+    ```bash
+    docker compose exec api sh
+    ```
+
+2. Run the tests
+
+    ```bash
+    cd tests
+    ```
+
+    ```bash
+    dotnet test
+    ```

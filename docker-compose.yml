@@ -2,24 +2,28 @@ version: '3.7'
 
 services:
   api:
-    image: lucaxue/bookapi:1.0
-    container_name: api
+    image: lucaxue/booksapi:1.0
+    container_name: books_api
     build:
       context: .
-    ports: 
-      - "5000:5000"
+      dockerfile: Dockerfile.aspnet
+    ports:
+      - '5000:5000'
     depends_on:
       - database
     networks:
       - backend
     volumes:
-      - "./:/app/"
+      - './:/app/'
     env_file:
       - ./src/.env
-    
+
   database:
-    image: postgres:13.3
-    container_name: postgresql 
+    image: lucaxue/booksdb:1.0
+    container_name: books_db
+    build:
+      context: .
+      dockerfile: Dockerfile.postgre
     networks:
       - backend
     env_file:
@@ -28,4 +32,3 @@ services:
 networks:
   backend:
     driver: bridge
-

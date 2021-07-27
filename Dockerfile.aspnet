@@ -1,6 +1,8 @@
 FROM mcr.microsoft.com/dotnet/aspnet:5.0
 FROM mcr.microsoft.com/dotnet/sdk:5.0
 
+LABEL author="lucaxue"
+
 WORKDIR /app
 
 ENV ASPNETCORE_URLS=http://+:80  

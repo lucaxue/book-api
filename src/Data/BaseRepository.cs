@@ -13,6 +13,7 @@ namespace BookApi.Data
         {
             _configuration = configuration;
         }
+
         // Generate new connection based on env variables
         private NpgsqlConnection SqlConnection()
         {
@@ -23,8 +24,9 @@ namespace BookApi.Data
                 Username = _configuration["POSTGRES_USER"],
                 Port = Int32.Parse(_configuration["POSTGRES_PORT"]),
                 Password = _configuration["POSTGRES_PASSWORD"],
-                SslMode = SslMode.Require,
-                TrustServerCertificate = true
+		// Uncomment below if using a Heroku hosted database
+                // SslMode = SslMode.Require,
+                // TrustServerCertificate = true
             };
             return new NpgsqlConnection(stringBuilder.ConnectionString);
         }

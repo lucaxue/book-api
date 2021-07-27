@@ -4,22 +4,24 @@ using Microsoft.Extensions.Hosting;
 
 namespace Configuration
 {
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            var root = Directory.GetCurrentDirectory();
-            var dotenv = Path.Combine(root, ".env");
-            DotEnv.Load(dotenv);
+	public class Program
+	{
+		public static void Main(string[] args)
+		{
+			var current = Directory.GetCurrentDirectory();
+			var root = Directory.GetParent(current).FullName;
 
-            CreateHostBuilder(args).Build().Run();
-        }
+			var dotenv = Path.Combine(root, ".env");
+			DotEnv.Load(dotenv);
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
-    }
+			CreateHostBuilder(args).Build().Run();
+		}
+
+		public static IHostBuilder CreateHostBuilder(string[] args) =>
+			Host.CreateDefaultBuilder(args)
+				.ConfigureWebHostDefaults(webBuilder =>
+				{
+					webBuilder.UseStartup<Startup>();
+				});
+	}
 }

@@ -63,7 +63,7 @@ A simple REST API, following repository pattern for a books table.
 - .NET 5.0
 - PostgreSQL
 
-#### Running the api locally (in `src/`)
+#### Running the api locally
 
 1. Copy and set up enviroment variables for the database
 
@@ -74,7 +74,7 @@ A simple REST API, following repository pattern for a books table.
 2. Run the app on your local port
 
     ```bash
-    dotnet watch run
+    dotnet watch run --project ./src/BookApi.csproj
     ```
 
 #### Running the tests (in `tests/`)
@@ -96,7 +96,7 @@ A simple REST API, following repository pattern for a books table.
 1. Copy enviroment variables for the database
 
     ```bash
-    cp src/.env.example src/.env
+    cp .env.example .env
     ```
 
 2. Build docker images

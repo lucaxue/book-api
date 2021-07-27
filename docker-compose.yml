@@ -16,7 +16,7 @@ services:
     volumes:
       - './:/app/'
     env_file:
-      - ./src/.env
+      - ./.env
 
   database:
     image: lucaxue/booksdb:1.0
@@ -27,7 +27,7 @@ services:
     networks:
       - backend
     env_file:
-      - ./src/.env
+      - ./.env
 
 networks:
   backend:

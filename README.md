@@ -53,10 +53,10 @@ A simple REST API, following repository pattern for a books table.
 
 ## ⚙️ Setting Up
 
-- [Local](###Local%20💻)
-- [Docker](###Docker%20🐳)
+- [Local](#setting-up-local)
+- [Docker](#setting-up-docker)
 
-### Local 💻
+<h3 id='setting-up-local'>Local 💻</h3>
 
 #### Prerequisites:
 
@@ -67,25 +67,25 @@ A simple REST API, following repository pattern for a books table.
 
 1. Copy and set up enviroment variables for the database
 
-    ```bash
-    cp .env.example .env
-    ```
+   ```bash
+   cp .env.example .env
+   ```
 
 2. Run the app on your local port
 
-    ```bash
-    dotnet watch run --project ./src/BookApi.csproj
-    ```
+   ```bash
+   dotnet watch run --project ./src/BookApi.csproj
+   ```
 
 #### Running the tests (in `tests/`)
 
 1. Run the tests
 
-    ```bash
-    dotnet test
-    ```
+   ```bash
+   dotnet test
+   ```
 
-### Docker 🐳
+<h3 id='setting-up-docker'>Docker 🐳</h3>
 
 #### Prerequisites:
 
@@ -95,36 +95,36 @@ A simple REST API, following repository pattern for a books table.
 
 1. Copy enviroment variables for the database
 
-    ```bash
-    cp .env.example .env
-    ```
+   ```bash
+   cp .env.example .env
+   ```
 
 2. Build docker images
 
-    ```bash
-    docker compose build
-    ```
+   ```bash
+   docker compose build
+   ```
 
-2. Run docker containers
+3. Run docker containers
 
-    ```bash
-    docker compose up
-    ```
+   ```bash
+   docker compose up
+   ```
 
 #### Running the tests
 
 1. Shell into the api service container
 
-    ```bash
-    docker compose exec api sh
-    ```
+   ```bash
+   docker compose exec api sh
+   ```
 
 2. Run the tests
 
-    ```bash
-    cd tests
-    ```
+   ```bash
+   cd tests
+   ```
 
-    ```bash
-    dotnet test
-    ```
+   ```bash
+   dotnet test
+   ```

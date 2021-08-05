@@ -77,9 +77,13 @@ A simple REST API, following repository pattern for a books table.
    dotnet watch run --project ./src/BookApi.csproj
    ```
 
-#### Running the tests (in `tests/`)
+#### Running the tests
 
 1. Run the tests
+
+   ```bash
+   cd tests
+   ```
 
    ```bash
    dotnet test

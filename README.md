@@ -28,7 +28,7 @@ A simple REST API, following repository pattern for a books table.
 | Index all books                | `/books`                |
 | Show book by id                | `/books/{id}`           |
 | Index books by title or author | `/books?search=foo`     |
-| Index books with custom limit  | `books?limit=5`         |
+| Index books with custom limit  | `/books?limit=5`        |
 | Paginate books                 | `/books?limit=5&page=3` |
 
 ### POST

@@ -4,12 +4,13 @@
 
 <div>
 
-![ASP.NET Core](https://img.shields.io/badge/ASP.NET%20Core-2e2e2e?logo=dotnet)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-2e2e2e?logo=postgresql)
-![Dapper ORM](https://img.shields.io/badge/Dapper%20ORM-2e2e2e?logo=dapper)
+[![ASP.NET Core](https://img.shields.io/badge/ASP.NET%20Core-2e2e2e?logo=dotnet)](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-5.0)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-2e2e2e?logo=postgresql)](https://www.postgresql.org/)
+[![Dapper ORM](https://img.shields.io/badge/Dapper%20ORM-2e2e2e?logo=dapper)](https://dapper-tutorial.net/)
 <br>
-![xUnit](https://img.shields.io/badge/xUnit-2e2e2e?logo=xunit)
-![FluentAssertions](https://img.shields.io/badge/Fluent%20Assertions-2e2e2e?logo=fluentassertions)
+[![xUnit](https://img.shields.io/badge/xUnit-2e2e2e?logo=xunit)](https://xunit.net/)
+[![FluentAssertions](https://img.shields.io/badge/Fluent%20Assertions-2e2e2e?logo=fluentassertions)](https://fluentassertions.com/)
+[![NSubstitute](https://img.shields.io/badge/NSubstitute-2e2e2e?logo=nsubstitute)](https://nsubstitute.github.io/)
 
 </div>
 
@@ -23,31 +24,16 @@ A simple REST API, following repository pattern for a books table.
 
 ### GET
 
-| Use                            | Endpoint                |
-| ------------------------------ | ----------------------- |
-| Index all books                | `/books`                |
-| Show book by id                | `/books/{id}`           |
-| Index books by title or author | `/books?search=foo`     |
-| Index books with custom limit  | `/books?limit=5`        |
-| Paginate books                 | `/books?limit=5&page=3` |
-
-### POST
-
-| Use             | Endpoint |
-| --------------- | -------- |
-| Create new book | `/books` |
-
-### PUT
-
-| Use         | Endpoint      |
-| ----------- | ------------- |
-| Update book | `/books/{id}` |
-
-### DELETE
-
-| Use          | Endpoint      |
-| ------------ | ------------- |
-| Destroy book | `/books/{id}` |
+| HTTP Method | Use                            | Endpoint                |
+| ----------- | ------------------------------ | ----------------------- |
+| **GET**     | Index all books                | `/books`                |
+| **GET**     | Show book by id                | `/books/{id}`           |
+| **GET**     | Index books by title or author | `/books?search=foo`     |
+| **GET**     | Index books with custom limit  | `/books?limit=5`        |
+| **GET**     | Paginate books                 | `/books?limit=5&page=3` |
+| **POST**    | Create new book                | `/books`                |
+| **PUT**     | Update book                    | `/books/{id}`           |
+| **DELETE**  | Destroy book                   | `/books/{id}`           |
 
 <br>
 
@@ -118,7 +104,6 @@ A simple REST API, following repository pattern for a books table.
 #### Running the tests
 
 1. Run the tests in the api container
-
 
    ```bash
    docker compose exec api /bin/sh -c "cd tests; dotnet test;"

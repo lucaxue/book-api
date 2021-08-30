@@ -6,7 +6,7 @@ services:
     container_name: books_api
     build:
       context: .
-      dockerfile: Dockerfile.aspnet
+      dockerfile: dockerfiles/aspnet.Dockerfile
     ports:
       - '5000:5000'
     depends_on:
@@ -23,7 +23,7 @@ services:
     container_name: books_db
     build:
       context: .
-      dockerfile: Dockerfile.postgre
+      dockerfile: dockerfiles/postgres.Dockerfile
     networks:
       - backend
     env_file:

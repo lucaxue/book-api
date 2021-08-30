@@ -97,7 +97,7 @@ A simple REST API, following repository pattern for a books table.
 
 #### Running the containers
 
-1. Copy enviroment variables for the database
+1. Copy environment variables for the database
 
    ```bash
    cp .env.example .env
@@ -117,18 +117,9 @@ A simple REST API, following repository pattern for a books table.
 
 #### Running the tests
 
-1. Shell into the api service container
+1. Run the tests in the api container
+
 
    ```bash
-   docker compose exec api sh
-   ```
-
-2. Run the tests
-
-   ```bash
-   cd tests
-   ```
-
-   ```bash
-   dotnet test
+   docker compose exec api /bin/sh -c "cd tests; dotnet test;"
    ```

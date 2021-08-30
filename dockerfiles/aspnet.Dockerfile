@@ -14,6 +14,7 @@ RUN dotnet restore "./src/BookApi.csproj"
 RUN mkdir tests
 COPY tests/BookApi.UnitTests.csproj ./tests
 RUN dotnet restore "./tests/BookApi.UnitTests.csproj"
+RUN dotnet dev-certs https
 
 COPY . ./
 
